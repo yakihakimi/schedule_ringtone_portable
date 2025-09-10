@@ -1,11 +1,47 @@
 # Rules applied
-from flask import Flask, request, jsonify, send_file, make_response
-from flask_cors import CORS
+# Import local packages handler first
+try:
+    from local_imports import import_required_packages, safe_import
+    print("🔧 Local imports module loaded successfully")
+except ImportError:
+    print("⚠️ Local imports module not available, using system imports only")
+    def safe_import(module_name, package_name=None, fallback_import=None):
+        import importlib
+        return importlib.import_module(module_name)
+
+# Try to import Flask and related packages with fallback
+try:
+    from flask import Flask, request, jsonify, send_file, make_response
+    from flask_cors import CORS
+    print("✅ Flask and Flask-CORS imported from system")
+except ImportError as e:
+    print(f"⚠️ Failed to import Flask from system: {e}")
+    print("🔄 Attempting to import from local packages...")
+    # Try local import
+    flask_module = safe_import('flask')
+    if flask_module:
+        Flask = flask_module.Flask
+        request = flask_module.request
+        jsonify = flask_module.jsonify
+        send_file = flask_module.send_file
+        make_response = flask_module.make_response
+        print("✅ Flask imported from local packages")
+    else:
+        raise ImportError("Could not import Flask from system or local packages")
+    
+    flask_cors_module = safe_import('flask_cors')
+    if flask_cors_module:
+        CORS = flask_cors_module.CORS
+        print("✅ Flask-CORS imported from local packages")
+    else:
+        print("⚠️ Flask-CORS not available, CORS functionality may be limited")
+
 import os
 import uuid
 from datetime import datetime
 import logging
 import json
+import hashlib
 
 # Configure ffmpeg path for pydub
 def find_ffmpeg_path():
@@ -140,8 +176,24 @@ except ImportError as e:
 try:
     from pydub import AudioSegment
     PYDUB_AVAILABLE = True
-    
-    # Configure pydub to use the found FFmpeg path
+    print("✅ pydub imported from system")
+except ImportError as e:
+    print(f"⚠️ Failed to import pydub from system: {e}")
+    print("🔄 Attempting to import pydub from local packages...")
+    pydub_module = safe_import('pydub')
+    if pydub_module:
+        AudioSegment = pydub_module.AudioSegment
+        PYDUB_AVAILABLE = True
+        print("✅ pydub imported from local packages")
+    else:
+        PYDUB_AVAILABLE = False
+        print("❌ pydub not available from system or local packages")
+
+# Initialize PYDUB_FULLY_WORKING
+PYDUB_FULLY_WORKING = False
+
+# Configure pydub to use the found FFmpeg path
+if PYDUB_AVAILABLE:
     if ffmpeg_path:
         ffmpeg_exe = os.path.join(ffmpeg_path, "ffmpeg.exe")
         if os.path.exists(ffmpeg_exe):
@@ -510,7 +562,6 @@ def save_ringtone():
             original_name_part = clean_original_name
             if len(original_name_part) > excess_length:
                 # Truncate the original name and add hash for uniqueness
-                import hashlib
                 name_hash = hashlib.md5(original_name_part.encode()).hexdigest()[:8]
                 original_name_part = original_name_part[:max(10, len(original_name_part) - excess_length)] + f"_{name_hash}"
             
