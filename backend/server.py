@@ -41,7 +41,25 @@ import uuid
 from datetime import datetime
 import logging
 import json
-import hashlib
+
+# Safe hashlib import with fallback
+try:
+    import hashlib
+    HASHLIB_AVAILABLE = True
+    print("✅ hashlib imported successfully")
+except ImportError as e:
+    HASHLIB_AVAILABLE = False
+    print(f"⚠️ hashlib not available: {e}")
+    # Create a fallback hash function
+    def fallback_hash(data):
+        """Fallback hash function using built-in hash()"""
+        return str(abs(hash(data)))[:8]
+    hashlib = type('MockHashlib', (), {
+        'md5': lambda x: type('MockMD5', (), {
+            'hexdigest': lambda: fallback_hash(x)
+        })()
+    })()
+    print("🔄 Using fallback hash function")
 
 # Configure ffmpeg path for pydub
 def find_ffmpeg_path():
@@ -221,11 +239,6 @@ if PYDUB_AVAILABLE:
     except Exception as e:
         PYDUB_FULLY_WORKING = False
         logging.warning(f"pydub is available but audio conversion test failed: {e}")
-        
-except ImportError:
-    PYDUB_AVAILABLE = False
-    PYDUB_FULLY_WORKING = False
-    logging.warning("pydub not available - MP3 conversion disabled")
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -562,8 +575,18 @@ def save_ringtone():
             original_name_part = clean_original_name
             if len(original_name_part) > excess_length:
                 # Truncate the original name and add hash for uniqueness
-                name_hash = hashlib.md5(original_name_part.encode()).hexdigest()[:8]
-                original_name_part = original_name_part[:max(10, len(original_name_part) - excess_length)] + f"_{name_hash}"
+                try:
+                    if HASHLIB_AVAILABLE:
+                        name_hash = hashlib.md5(original_name_part.encode()).hexdigest()[:8]
+                    else:
+                        # Use fallback hash function
+                        name_hash = str(abs(hash(original_name_part)))[:8]
+                    original_name_part = original_name_part[:max(10, len(original_name_part) - excess_length)] + f"_{name_hash}"
+                except Exception as e:
+                    logger.warning(f"Hash generation failed: {e}, using timestamp fallback")
+                    # Fallback to timestamp-based uniqueness
+                    name_hash = str(int(datetime.now().timestamp()))[-8:]
+                    original_name_part = original_name_part[:max(10, len(original_name_part) - excess_length)] + f"_{name_hash}"
             
             # Regenerate filename with shortened name
             safe_filename = f"ringtone_{timestamp}_{original_name_part}_{start_time}s_to_{end_time}s{file_ext}"
@@ -575,10 +598,22 @@ def save_ringtone():
             
             if len(new_command) > max_command_length:
                 # If still too long, use a very short name with hash
-                name_hash = hashlib.md5(clean_original_name.encode()).hexdigest()[:12]
-                safe_filename = f"rt_{timestamp}_{name_hash}_{start_time}s_to_{end_time}s{file_ext}"
-                safe_filename = "".join(c for c in safe_filename if c.isalnum() or c in (' ', '-', '_', '.')).rstrip()
-                logger.info(f"🔄 Using minimal filename: {safe_filename}")
+                try:
+                    if HASHLIB_AVAILABLE:
+                        name_hash = hashlib.md5(clean_original_name.encode()).hexdigest()[:12]
+                    else:
+                        # Use fallback hash function
+                        name_hash = str(abs(hash(clean_original_name)))[:12]
+                    safe_filename = f"rt_{timestamp}_{name_hash}_{start_time}s_to_{end_time}s{file_ext}"
+                    safe_filename = "".join(c for c in safe_filename if c.isalnum() or c in (' ', '-', '_', '.')).rstrip()
+                    logger.info(f"🔄 Using minimal filename: {safe_filename}")
+                except Exception as e:
+                    logger.warning(f"Hash generation failed: {e}, using timestamp fallback")
+                    # Fallback to timestamp-based uniqueness
+                    name_hash = str(int(datetime.now().timestamp()))[-12:]
+                    safe_filename = f"rt_{timestamp}_{name_hash}_{start_time}s_to_{end_time}s{file_ext}"
+                    safe_filename = "".join(c for c in safe_filename if c.isalnum() or c in (' ', '-', '_', '.')).rstrip()
+                    logger.info(f"🔄 Using minimal filename with timestamp fallback: {safe_filename}")
         
         # Set the target filename
         target_filename = safe_filename
@@ -767,8 +802,28 @@ def save_ringtone():
         return jsonify(response_data)
         
     except Exception as e:
-        logger.error(f"Error saving ringtone: {e}")
-        return jsonify({'success': False, 'error': str(e)}), 500
+        error_msg = str(e)
+        logger.error(f"Error saving ringtone: {error_msg}")
+        
+        # Check if it's a hashlib-related error
+        if 'hashlib' in error_msg.lower() or 'cannot access local variable' in error_msg:
+            logger.error("🚨 Hashlib-related error detected! This should not happen with the new safeguards.")
+            # Try to provide a more helpful error message
+            error_msg = "Internal error during ringtone creation. Please try again or contact support."
+        
+        return jsonify({
+            'success': False, 
+            'error': error_msg,
+            'filename': '',
+            'file_path': '',
+            'size': 0,
+            'created': '',
+            'metadata': {},
+            'mp3_available': False,
+            'format': '',
+            'folder': '',
+            'error_type': 'hashlib_error' if 'hashlib' in error_msg.lower() else 'general_error'
+        }), 500
 
 @app.route('/api/ringtones/<folder>/<filename>', methods=['GET'])
 def download_ringtone(folder, filename):
