@@ -1,0 +1,33 @@
+# Rules applied
+# Core Flask web framework
+Flask==2.3.3
+Flask-CORS==4.0.0
+Werkzeug==2.3.7
+
+# Audio processing and conversion
+pydub==0.25.1
+
+# Audio playback libraries
+pygame==2.6.0
+
+# Additional useful packages for the project
+requests==2.31.0  # For HTTP requests if needed
+python-dateutil==2.8.2  # For advanced date/time handling
+psutil==5.9.8  # For process management and system monitoring
+
+# Windows-specific audio (built-in, but listed for clarity)
+# winsound - built-in Windows module
+
+# Standard library modules (built-in, listed for reference):
+# subprocess - for running system commands
+# json - for JSON data handling
+# os - for operating system interface
+# sys - for system-specific parameters
+# datetime - for date and time handling
+# typing - for type hints
+# logging - for logging functionality
+# time - for time-related functions
+# pathlib - for object-oriented filesystem paths
+# uuid - for generating unique identifiers
+# hashlib - for hash functions
+# shutil - for high-level file operations

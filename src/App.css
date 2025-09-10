@@ -1,0 +1,1251 @@
+/* Rules applied */
+.App {
+  text-align: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.App-header {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.App-header p {
+  margin: 1rem 0 0 0;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.App-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.upload-section,
+.player-section,
+.ringtones-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.upload-section h2,
+.player-section h2,
+.ringtones-section h2 {
+  margin-top: 0;
+  color: #fff;
+  font-size: 2rem;
+}
+
+/* File Upload Styles */
+.file-upload {
+  width: 100%;
+}
+
+.upload-area {
+  border: 3px dashed rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  padding: 3rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.upload-area:hover,
+.upload-area.drag-over {
+  border-color: #4CAF50;
+  background: rgba(76, 175, 80, 0.1);
+  transform: scale(1.02);
+}
+
+.upload-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.upload-content h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.upload-content p {
+  margin: 0.5rem 0;
+  opacity: 0.8;
+}
+
+.file-types {
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+/* Audio Player Styles */
+.audio-player {
+  text-align: left;
+}
+
+.audio-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+}
+
+.audio-info p {
+  margin: 0 0 2rem 0;
+  opacity: 0.8;
+}
+
+.controls {
+  margin: 2rem 0;
+}
+
+.play-button {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.play-button:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+}
+
+.play-button.playing {
+  background: #f44336;
+}
+
+.play-button.playing:hover {
+  background: #da190b;
+}
+
+.progress-container {
+  margin: 1.5rem 0;
+}
+
+.progress-bar {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #45a049);
+  border-radius: 10px;
+  transition: width 0.1s ease;
+}
+
+.progress-handle {
+  position: absolute;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.time-display {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.volume-control label {
+  min-width: 80px;
+}
+
+.volume-control input[type="range"] {
+  flex: 1;
+  max-width: 200px;
+}
+
+.volume-control span {
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Ringtone Editor Styles */
+.ringtone-editor {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.ringtone-editor h4 {
+  margin-top: 0;
+  color: #fff;
+}
+
+.time-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+
+.time-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.time-input label {
+  font-weight: 600;
+}
+
+.time-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.time-controls input[type="range"] {
+  width: 100%;
+}
+
+.time-controls span {
+  font-family: monospace;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.pin-time-btn {
+  background: #9C27B0;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.pin-time-btn:hover {
+  background: #7B1FA2;
+  transform: translateY(-1px);
+}
+
+.pin-time-btn:active {
+  transform: translateY(0);
+}
+
+.ringtone-preview {
+  text-align: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.create-ringtone-btn {
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.create-ringtone-btn:hover:not(:disabled) {
+  background: #1976D2;
+  transform: translateY(-2px);
+}
+
+.create-ringtone-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Ringtone List Styles */
+.ringtone-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.ringtone-list.empty {
+  text-align: center;
+  padding: 3rem;
+  opacity: 0.7;
+}
+
+.ringtone-section {
+  margin-bottom: 2rem;
+}
+
+.ringtone-section h3 {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.ringtone-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.ringtone-item.local {
+  border-left: 4px solid #4CAF50;
+}
+
+.ringtone-item.saved {
+  border-left: 4px solid #2196F3;
+}
+
+.ringtone-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.ringtone-info h4 {
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+}
+
+.ringtone-info p {
+  margin: 0.25rem 0;
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+.ringtone-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.ringtone-controls button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.play-button {
+  background: #4CAF50;
+  color: white;
+}
+
+.play-button:hover {
+  background: #45a049;
+}
+
+.stop-button {
+  background: #f44336;
+  color: white;
+}
+
+.stop-button:hover {
+  background: #da190b;
+}
+
+.download-button {
+  background: #FF9800;
+  color: white;
+}
+
+.download-button:hover {
+  background: #F57C00;
+}
+
+.edit-button {
+  background: #2196F3;
+  color: white;
+}
+
+.edit-button:hover {
+  background: #1976D2;
+  transform: translateY(-1px);
+}
+
+.download-button.mp3 {
+  background: #9C27B0;
+}
+
+.download-button.mp3:hover {
+  background: #7B1FA2;
+}
+
+.delete-button {
+  background: #f44336;
+  color: white;
+}
+
+.delete-button:hover {
+  background: #da190b;
+}
+
+.refresh-button {
+  background: #2196F3;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.refresh-button:hover {
+  background: #1976D2;
+  transform: translateY(-2px);
+}
+
+.refresh-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 2rem;
+  opacity: 0.7;
+}
+
+.loading-message p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.refresh-section {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Error Message Styles */
+.error-message {
+  background: rgba(244, 67, 54, 0.2);
+  border: 1px solid #f44336;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-message p {
+  margin: 0;
+  color: #ffcdd2;
+}
+
+.error-message button {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.error-message button:hover {
+  background: #da190b;
+}
+
+/* Success Message Styles */
+.success-message {
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid #4CAF50;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.success-message p {
+  margin: 0;
+  color: #c8e6c9;
+}
+
+.success-message button {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.success-message button:hover {
+  background: #45a049;
+}
+
+/* No Ringtones Message Styles */
+.no-ringtones-message {
+  background: rgba(158, 158, 158, 0.2);
+  border: 1px solid #9e9e9e;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.no-ringtones-message p {
+  margin: 0;
+  color: #e0e0e0;
+  font-size: 1.1rem;
+}
+
+/* Loading Message Styles */
+.loading-message {
+  background: rgba(33, 150, 243, 0.2);
+  border: 1px solid #2196f3;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.loading-message p {
+  margin: 0;
+  color: #bbdefb;
+  font-size: 1.1rem;
+}
+
+/* Main Tab Navigation Styles */
+.main-tab-navigation {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem auto;
+  justify-content: center;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.main-tab-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  min-width: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-tab-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.main-tab-button.active {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.4) 0%, rgba(33, 150, 243, 0.4) 100%);
+  border-color: #4CAF50;
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+  transform: translateY(-3px);
+}
+
+.main-tab-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.refresh-button {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.4) 0%, rgba(255, 152, 0, 0.4) 100%);
+  border: 2px solid rgba(255, 193, 7, 0.6);
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  min-width: 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.refresh-button:hover {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.6) 0%, rgba(255, 152, 0, 0.6) 100%);
+  border-color: rgba(255, 193, 7, 0.8);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+}
+
+.refresh-button:active {
+  transform: translateY(-1px);
+}
+
+/* Tab Content Styles */
+.creator-tab-content,
+.ringtones-tab-content,
+.schedule-tab-content {
+  width: 100%;
+}
+
+.creator-tab-content .upload-section,
+.creator-tab-content .player-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ringtones-tab-content {
+  padding: 1rem;
+}
+
+/* Enhanced Tab Button Animations */
+.main-tab-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.main-tab-button:hover::before {
+  left: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .App-header h1 {
+    font-size: 2rem;
+  }
+  
+  .App-main {
+    padding: 1rem;
+  }
+  
+  .time-inputs {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .ringtone-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .ringtone-controls {
+    justify-content: center;
+  }
+}
+
+/* Search Bar Styles */
+.search-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.search-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 3rem 1rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1.1rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+}
+
+.clear-search-button {
+  position: absolute;
+  right: 0.5rem;
+  background: rgba(244, 67, 54, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.clear-search-button:hover {
+  background: #f44336;
+  transform: scale(1.1);
+}
+
+.search-info {
+  text-align: center;
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 2rem 0;
+}
+
+.no-results p {
+  margin: 0 0 1.5rem 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
+}
+
+.no-results .clear-search-button {
+  position: static;
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  width: auto;
+  height: auto;
+}
+
+.no-results .clear-search-button:hover {
+  background: #1976D2;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design for Main Tabs */
+@media (max-width: 768px) {
+  .main-tab-navigation {
+    flex-direction: column;
+    max-width: 90%;
+  }
+  
+  .main-tab-button {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .search-input-container {
+    max-width: 100%;
+  }
+  
+  .search-input {
+    font-size: 1rem;
+    padding: 0.875rem 2.5rem 0.875rem 0.875rem;
+  }
+}
+
+/* Schedule Ringtone Styles */
+.schedule-ringtone {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.schedule-ringtone h2 {
+  margin-top: 0;
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.schedule-ringtone > p {
+  text-align: center;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+.schedule-actions {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.create-schedule-button {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.create-schedule-button:hover {
+  background: linear-gradient(135deg, #45a049 0%, #4CAF50 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+}
+
+.schedule-form {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.schedule-form h3 {
+  margin-top: 0;
+  color: #fff;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.form-group select,
+.form-group input[type="time"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.form-group select:focus,
+.form-group input[type="time"]:focus {
+  outline: none;
+  border-color: #4CAF50;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+}
+
+.form-group select option {
+  background: #333;
+  color: white;
+}
+
+.days-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.day-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.day-checkbox:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.day-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #4CAF50;
+}
+
+.day-checkbox input[type="checkbox"]:checked + span {
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+.day-checkbox span {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+  min-width: 200px;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1976D2 0%, #2196F3 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+}
+
+.submit-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.schedules-list {
+  margin-top: 2rem;
+}
+
+.schedules-list h3 {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.no-schedules {
+  text-align: center;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+.no-schedules p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+}
+
+.schedules-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.schedule-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.schedule-item.active {
+  border-color: #4CAF50;
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+}
+
+.schedule-item.inactive {
+  border-color: #f44336;
+  opacity: 0.7;
+}
+
+.schedule-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.schedule-info h4 {
+  margin: 0 0 1rem 0;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.schedule-info p {
+  margin: 0.5rem 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.schedule-info p strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.schedule-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.schedule-controls button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  flex: 1;
+  min-width: 80px;
+}
+
+.toggle-button.activate {
+  background: #4CAF50;
+  color: white;
+}
+
+.toggle-button.activate:hover {
+  background: #45a049;
+  transform: translateY(-1px);
+}
+
+.toggle-button.deactivate {
+  background: #f44336;
+  color: white;
+}
+
+.toggle-button.deactivate:hover {
+  background: #da190b;
+  transform: translateY(-1px);
+}
+
+.test-button {
+  background: #FF9800;
+  color: white;
+}
+
+.test-button:hover {
+  background: #F57C00;
+  transform: translateY(-1px);
+}
+
+.pause-button {
+  background: #9C27B0;
+  color: white;
+}
+
+.pause-button:hover {
+  background: #7B1FA2;
+  transform: translateY(-1px);
+}
+
+.schedule-controls .delete-button {
+  background: #f44336;
+  color: white;
+}
+
+.schedule-controls .delete-button:hover {
+  background: #da190b;
+  transform: translateY(-1px);
+}
+
+.schedule-instructions {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-top: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.schedule-instructions h3 {
+  margin-top: 0;
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.schedule-instructions ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.schedule-instructions li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+/* Responsive Design for Schedule */
+@media (max-width: 768px) {
+  .schedule-ringtone {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .schedules-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .days-selection {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .schedule-controls {
+    flex-direction: column;
+  }
+  
+  .schedule-controls button {
+    min-width: auto;
+  }
+}
+
+/* Schedule Source Selection */
+.schedule-source-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.source-radio {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.source-radio:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.source-radio input[type="radio"] {
+  margin-right: 0.5rem;
+  transform: scale(1.2);
+}
+
+.source-radio input[type="radio"]:checked + span {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.source-radio span {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.source-radio small {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-left: 1.5rem;
+}
+
+/* Responsive Design for Schedule Source */
+@media (max-width: 768px) {
+  .schedule-source-selection {
+    gap: 0.75rem;
+  }
+  
+  .source-radio {
+    padding: 0.75rem;
+  }
+}
